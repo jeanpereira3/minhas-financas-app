@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { Link } from 'react-router-dom'
 
-import axios from 'axios'
+import { useUsuarioService } from '../hooks/useUsuarioService'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
@@ -17,19 +16,24 @@ const Login = () => {
 
   const navigate = useNavigate()
 
+  const { autenticar } = useUsuarioService()
+
+
   const entrar = (e) => {
     e.preventDefault()
+    
 
-    axios.post('http://localhost:8080/api/usuarios/autenticar',
-      {
-        email,
-        senha
-      }).then(response => {
-        localStorage.setItem('_usuario_logado', JSON.stringify(response.data))
-        navigate('/home')
-      }).catch(erro => {
-        setErro(erro.response.data)
-      })
+    autenticar({
+      email,
+      senha
+    }).then(response => {
+      console.log('trai');
+      localStorage.setItem('_usuario_logado', JSON.stringify(response.data))
+      navigate('/home')
+    }).catch(erro => {
+      console.log('cat');
+      setErro(erro.response.data)
+    })
   }
 
   return (
