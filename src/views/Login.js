@@ -49,7 +49,7 @@ const Login = () => {
                       >Entrar</button>
                       <Link 
                         className='btn btn-danger'
-                        to={'/cadastrar'}
+                        to='/cadastrar-usuario'
                       >Cadastrar</Link>
                     </Card>
                 </div>

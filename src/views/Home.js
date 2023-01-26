@@ -1,0 +1,31 @@
+import React from 'react'
+
+import { Link } from 'react-router-dom'
+
+const Home = () => {
+  return (
+    <div className='container'>
+
+      <div className='jumbotron'>
+        <h1 className='display-3'>Bem vindo!</h1>
+        <p className='lead'>Esse é seu sistema de finanças.</p>
+        <p className='lead'>Seu saldo para o mês atual é de R$ 5.325,21</p>
+        <hr className='my-4' />
+        <p>E essa é sua área administrativa, utilize um dos menus ou botões abaixo para navegar pelo sistema.</p>
+        <p className='lead'>
+          <Link className='btn btn-primary btn-lg' 
+            to='/cadastrar-usuario' role='button'>
+            <i className='fa fa-users'></i>
+            Cadastrar Usuário
+          </Link>
+          <Link className='btn btn-danger btn-lg' href='https://bootswatch.com/flatly/#' role='button'>
+            <i className='fa fa-users'></i>
+            Cadastrar Lançamento
+          </Link>
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export default Home

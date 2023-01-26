@@ -7,6 +7,7 @@ import './custom.css'
 
 import NavBar from './components/NavBar';
 import Login from './views/Login'
+import Home from './views/Home';
 import CadastroUsuario from './views/CadastroUsuario'
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
         <NavBar />
         <Routes>
           <Route path='/' element={<Login />} ></Route>
-          <Route path='/cadastrar' element={<CadastroUsuario />} ></Route>
+          <Route path='/home' element={<Home />}></Route>
+          <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
         </Routes>
       </BrowserRouter>  
     </div>

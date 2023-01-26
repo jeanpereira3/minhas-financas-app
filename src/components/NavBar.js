@@ -23,7 +23,7 @@ const NavBar = () => {
           <ul className='navbar-nav'>
             <NavItem href='/home' label='Home'></NavItem>
 
-            <NavItem href='/usuarios' label='Usuários'></NavItem>
+            <NavItem href='/cadastrar-usuario' label='Usuários'></NavItem>
 
             <NavItem href='/lancamentos' label='Lançamentos'></NavItem>
 
