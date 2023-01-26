@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-import { Link } from 'react-router-dom'
+import { json, Link } from 'react-router-dom'
 import axios from 'axios'
 
 const Home = () => {
@@ -9,7 +9,11 @@ const Home = () => {
   const [saldo, setSaldo] = useState(0)
 
   useEffect(()=>{
-    axios.get('http://localhost:8080/api/usuarios/494/saldo')
+
+    const usuarioLogadoString = localStorage.getItem('_usuario_logado')
+    const usuarioLogadoObj = JSON.parse(usuarioLogadoString)
+
+    axios.get(`http://localhost:8080/api/usuarios/${usuarioLogadoObj.id}/saldo`)
       .then(response => {
         setSaldo(response.data)
       }).catch(erro => {

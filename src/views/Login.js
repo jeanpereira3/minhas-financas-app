@@ -19,11 +19,13 @@ const Login = () => {
 
   const entrar = (e) => {
     e.preventDefault()
+
     axios.post('http://localhost:8080/api/usuarios/autenticar',
       {
         email,
         senha
       }).then(response => {
+        localStorage.setItem('_usuario_logado', JSON.stringify(response.data))
         navigate('/home')
       }).catch(erro => {
         setErro(erro.response.data)
