@@ -8,8 +8,13 @@ export const useUsuarioService = () => {
     return httpClient.post(`${USUARIO_URL}/autenticar` , data)
   }
 
+  const getSaldo = (url) => {
+    return httpClient.get(`${USUARIO_URL}/${url}/saldo`)
+  }
+
   return {
     autenticar,
+    getSaldo,
   }
 }
 

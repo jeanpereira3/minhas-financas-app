@@ -1,24 +1,30 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-import { json, Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link } from 'react-router-dom'
+
+import { useUsuarioService } from '../hooks/useUsuarioService'
 
 const Home = () => {
 
   const [saldo, setSaldo] = useState(0)
 
-  useEffect(()=>{
+  const { getSaldo } = useUsuarioService()
 
+  const exibirSaldo = () => {
     const usuarioLogadoString = localStorage.getItem('_usuario_logado')
     const usuarioLogadoObj = JSON.parse(usuarioLogadoString)
 
-    axios.get(`http://localhost:8080/api/usuarios/${usuarioLogadoObj.id}/saldo`)
+    getSaldo(usuarioLogadoObj.id)
       .then(response => {
         setSaldo(response.data)
       }).catch(erro => {
         console.log(erro.response)
       })
+  }
+
+  useEffect(()=>{
+    exibirSaldo()
   },[])
 
   return (

@@ -21,8 +21,6 @@ const Login = () => {
 
   const entrar = (e) => {
     e.preventDefault()
-    
-
     autenticar({
       email,
       senha
