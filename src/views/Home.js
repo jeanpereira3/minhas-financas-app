@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 import { useUsuarioService } from '../hooks/useUsuarioService'
 
+import LocalStorage from '../ultils/LocalStorage'
+
 const Home = () => {
 
   const [saldo, setSaldo] = useState(0)
@@ -12,10 +14,9 @@ const Home = () => {
   const { getSaldo } = useUsuarioService()
 
   const exibirSaldo = () => {
-    const usuarioLogadoString = localStorage.getItem('_usuario_logado')
-    const usuarioLogadoObj = JSON.parse(usuarioLogadoString)
+    const usuarioLogado = LocalStorage.getItem('_usuario_logado')
 
-    getSaldo(usuarioLogadoObj.id)
+    getSaldo(usuarioLogado.id)
       .then(response => {
         setSaldo(response.data)
       }).catch(erro => {

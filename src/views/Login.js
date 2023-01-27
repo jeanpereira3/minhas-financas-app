@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useUsuarioService } from '../hooks/useUsuarioService'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
+
+import LocalStorage from '../ultils/LocalStorage'
 
 const Login = () => {
 
@@ -25,8 +26,7 @@ const Login = () => {
       email,
       senha
     }).then(response => {
-      console.log('trai');
-      localStorage.setItem('_usuario_logado', JSON.stringify(response.data))
+      LocalStorage.setItem('_usuario_logado', response.data)
       navigate('/home')
     }).catch(erro => {
       console.log('cat');
