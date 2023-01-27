@@ -26,7 +26,7 @@ const Home = () => {
 
   useEffect(()=>{
     exibirSaldo()
-  },[])
+  }, [])
 
   return (
     <div className='container'>

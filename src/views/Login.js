@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useUsuarioService } from '../hooks/useUsuarioService'
+import { useToast } from '../hooks/useToastr' 
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
@@ -13,11 +14,11 @@ const Login = () => {
 
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
-  const [erro, setErro] = useState(null)
 
   const navigate = useNavigate()
 
   const { autenticar } = useUsuarioService()
+  const { mensagemErro } = useToast()
 
 
   const entrar = (e) => {
@@ -29,8 +30,7 @@ const Login = () => {
       LocalStorage.setItem('_usuario_logado', response.data)
       navigate('/home')
     }).catch(erro => {
-      console.log('cat');
-      setErro(erro.response.data)
+      mensagemErro(erro.response.data)
     })
   }
 
@@ -39,11 +39,7 @@ const Login = () => {
       <div className='row'>
         <div className='col-md-6' style={{ position: 'relative', margin: 'auto' }}>
           <div className='bs-docs-section'>
-
             <Card title='Login'>
-              {erro && <div className='row'>
-                <span>{erro}</span>
-              </div>}
               <FormGroup
                 label='Email: *'
                 htmlFor='exampleInputEmail1'
