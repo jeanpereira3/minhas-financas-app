@@ -1,20 +1,22 @@
 import React from 'react'
 
 const LancamentosTable = (props) => {
+
+  var currencyFormatter = require('currency-formatter')
+
   const rows = props.lancamentos.map((lancamento, index) => {
     return (
-      
-        <tr key={index}>
-          <th scope='row'>{lancamento.descricao}</th>
-          <td>R$ {lancamento.valor}</td>
-          <td>{lancamento.tipo}</td>
-          <td>{lancamento.mes}</td>
-          <td>{lancamento.status}</td>
-          <td>
-            <button type='button' className='btn btn-primary'>Editar</button>
-            <button type='button' className='btn btn-danger'>Deletar</button>
-          </td>
-        </tr>
+      <tr key={index}>
+        <th scope='row'>{lancamento.descricao}</th>
+        <td>{currencyFormatter.format(lancamento.valor, { code: 'BRL' })}</td>
+        <td>{lancamento.tipo}</td>
+        <td>{lancamento.mes}</td>
+        <td>{lancamento.status}</td>
+        <td>
+          <button type='button' className='btn btn-primary'>Editar</button>
+          <button type='button' className='btn btn-danger'>Deletar</button>
+        </td>
+      </tr>
     )
   })
 

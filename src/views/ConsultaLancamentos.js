@@ -6,7 +6,7 @@ import FormGroup from '../components/FormGroup'
 import SelectMenu from '../components/SelectMenu'
 import LancamentosTable from '../components/LancamentosTable'
 
-import {useLancamentoService} from '../hooks/useLancamentoService'
+import { useLancamentoService } from '../hooks/useLancamentoService'
 import { useToast } from '../hooks/useToastr'
 import LocalStorage from '../ultils/LocalStorage'
 
@@ -14,9 +14,10 @@ const ConsultaLancamentos = () => {
   const [ano, setAno] = useState('')
   const [mes, setMes] = useState('')
   const [tipo, setTipo] = useState('')
+  const [descricao, setDescricao] = useState('')
   const [lancamentos, setLancamentos] = useState([])
 
-  const { getLancamentos } = useLancamentoService()
+  const { getLancamentos, listaMeses, listaTipo } = useLancamentoService()
   const { mensagemErro } = useToast
 
   const buscar = () => {
@@ -26,45 +27,20 @@ const ConsultaLancamentos = () => {
       ano,
       mes,
       tipo,
+      descricao,
       usuario: usuarioLogado.id
-    }).then( response => {
+    }).then(response => {
       setLancamentos(response.data)
     }).catch(erro => {
       mensagemErro(erro.response.data)
     })
   }
 
-
-  const meses = [
-    { label: 'Selecione...', value: '' },
-    { label: 'Janeiro', value: 1 },
-    {
-      label: 'Fevereiro',
-      value: 2
-    },
-    { label: 'Março', value: 3 },
-    { label: 'Abril', value: 4 },
-    { label: 'Maio', value: 5 },
-    { label: 'Junho', value: 6 },
-    { label: 'Julho', value: 7 },
-    { label: 'Agosto', value: 8 },
-    { label: 'Setembro', value: 9 },
-    { label: 'Outubro', value: 10 },
-    { label: 'Novembro', value: 11 },
-    { label: 'Desembro', value: 12 }
-  ]
-
-  const tipoLancamento = [
-    { label: 'Selecione...', value: '' },
-    { label: 'Receita', value: 'RECEITA' },
-    { label: 'Despesa', value: 'DESPESA' }
-  ]
-
   return (
     <div className='container'>
       <Card title='Consulta Lançamento'>
         <FormGroup
-          label='Ano: *'
+          label='Ano: '
           htmlFor='buscaAno'
         >
           <input
@@ -78,15 +54,28 @@ const ConsultaLancamentos = () => {
         </FormGroup>
 
         <FormGroup
-          label='Mês: *'
+          label='Mês: '
           htmlFor='buscaMes'
         >
           <SelectMenu
             id='buscaMes'
             className='form-control'
-            lista={meses}
+            lista={listaMeses()}
             value={mes}
             onChange={e => setMes(e.target.value)}
+          />
+        </FormGroup>
+
+        <FormGroup
+          label='Descrição: '
+          htmlFor='buscaDescricao'
+        >
+          <input
+            type='text'
+            id='buscaDescricao'
+            className='form-control'
+            value={descricao}
+            onChange={e => setDescricao(e.target.value)}
           />
         </FormGroup>
 
@@ -97,7 +86,7 @@ const ConsultaLancamentos = () => {
           <SelectMenu
             id='buscaTipo'
             className='form-control'
-            lista={tipoLancamento}
+            lista={listaTipo()}
             value={tipo}
             onChange={e => setTipo(e.target.tipo)}
           />
