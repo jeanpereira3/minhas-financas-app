@@ -3,6 +3,7 @@ import React from 'react'
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
 import SelectMenu from '../components/SelectMenu'
+import LancamentosTable from '../components/LancamentosTable'
 
 const ConsultaLancamentos = () => {
   const meses = [
@@ -19,14 +20,8 @@ const ConsultaLancamentos = () => {
       label: 'Março',
       value: 3
     },
-    {
-      label: 'Abril',
-      value: 4
-    },
-    {
-      label: 'Maio',
-      value: 5
-    },
+    { label: 'Abril', value: 4 },
+    { label: 'Maio', value: 5 },
     {
       label: 'Junho',
       value: 6
@@ -91,6 +86,8 @@ const ConsultaLancamentos = () => {
 
         <button type='button' className='btn btn-success'>Buscar</button>
         <button type='button' className='btn btn-danger'>Cadastrar</button>
+
+        <LancamentosTable />
       </Card>
     </div>
   )
