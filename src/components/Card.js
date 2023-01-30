@@ -1,9 +1,6 @@
 import React from 'react'
 
 const Card = (props) => {
-
-    
-
     return (
     <div className='card mb-3'>
         <h3 className='card-header'>{props.title}</h3>

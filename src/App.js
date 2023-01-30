@@ -12,6 +12,7 @@ import NavBar from './components/NavBar';
 import Login from './views/Login'
 import Home from './views/Home';
 import CadastroUsuario from './views/CadastroUsuario'
+import ConsultaLancamentos from './views/ConsultaLancamentos';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<Login />} ></Route>
           <Route path='/home' element={<Home />}></Route>
           <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
+          <Route path='/consulta-lancamentos' element={<ConsultaLancamentos />}></Route>
         </Routes>
       </BrowserRouter>  
     </div>

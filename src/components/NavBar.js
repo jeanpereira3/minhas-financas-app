@@ -25,7 +25,7 @@ const NavBar = () => {
 
             <NavItem href='/cadastrar-usuario' label='Usuários'></NavItem>
 
-            <NavItem href='/lancamentos' label='Lançamentos'></NavItem>
+            <NavItem href='/consulta-lancamentos' label='Lançamentos'></NavItem>
 
             <NavItem href='/' label='login'></NavItem>
           </ul>
