@@ -12,9 +12,14 @@ export const useUsuarioService = () => {
     return httpClient.get(`${USUARIO_URL}/${url}/saldo`)
   }
 
+  const cadastrarUsuario = (data) => {
+    return httpClient.post(`${USUARIO_URL}/`, data)
+  }
+
   return {
     autenticar,
     getSaldo,
+    cadastrarUsuario,
   }
 }
 
