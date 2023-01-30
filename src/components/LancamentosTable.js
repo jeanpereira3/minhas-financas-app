@@ -5,11 +5,11 @@ const LancamentosTable = (props) => {
     return (
       
         <tr key={index}>
-          <th scope='row'>{lancamento.salario}</th>
-          <td>R$ 4.200,00</td>
-          <td>Receita</td>
-          <td>01/02/2019</td>
-          <td>Pendente</td>
+          <th scope='row'>{lancamento.descricao}</th>
+          <td>R$ {lancamento.valor}</td>
+          <td>{lancamento.tipo}</td>
+          <td>{lancamento.mes}</td>
+          <td>{lancamento.status}</td>
           <td>
             <button type='button' className='btn btn-primary'>Editar</button>
             <button type='button' className='btn btn-danger'>Deletar</button>
