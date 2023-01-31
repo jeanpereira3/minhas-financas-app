@@ -1,7 +1,6 @@
 import React from 'react'
 
 const SelectMenu = (props) => {
-  console.log(props.lista);
 
   const options = props.lista.map((option, index) => {
     return (

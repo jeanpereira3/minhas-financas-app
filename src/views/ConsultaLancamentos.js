@@ -17,8 +17,8 @@ const ConsultaLancamentos = () => {
   const [descricao, setDescricao] = useState('')
   const [lancamentos, setLancamentos] = useState([])
 
-  const { getLancamentos, listaMeses, listaTipo } = useLancamentoService()
-  const { mensagemErro } = useToast
+  const { getLancamentos, listaMeses, listaTipo, deletarLancamento } = useLancamentoService()
+  const { mensagemErro, mensagemSucesso } = useToast()
 
   const buscar = () => {
     const usuarioLogado = LocalStorage.getItem('_usuario_logado')
@@ -31,6 +31,21 @@ const ConsultaLancamentos = () => {
       usuario: usuarioLogado.id
     }).then(response => {
       setLancamentos(response.data)
+    }).catch(erro => {
+      mensagemErro(erro.response.data)
+    })
+  }
+
+  const deletar = (lancamento) => {
+    deletarLancamento(lancamento.id).then(response => {
+      setLancamentos((current) =>
+        current.filter(
+          (element) =>
+            element.id !== lancamento.id 
+        )
+      );
+
+      mensagemSucesso('Lancamento deletado com sucesso.')
     }).catch(erro => {
       mensagemErro(erro.response.data)
     })
@@ -99,7 +114,10 @@ const ConsultaLancamentos = () => {
         >Buscar</button>
         <button type='button' className='btn btn-danger'>Cadastrar</button>
 
-        <LancamentosTable lancamentos={lancamentos} />
+        <LancamentosTable
+          lancamentos={lancamentos}
+          deletar={deletar}
+        />
       </Card>
     </div>
   )
