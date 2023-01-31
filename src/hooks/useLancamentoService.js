@@ -26,6 +26,10 @@ export const useLancamentoService = () => {
     return httpClient.get(params)
   }
 
+  const salvarLancamento = (data) => {
+      return httpClient.post(`${LANCAMENTO_URL}`, data)
+  }
+
   const deletarLancamento = (id) => {
     return httpClient.delete(`${LANCAMENTO_URL}/${id}`)
   }
@@ -61,5 +65,6 @@ export const useLancamentoService = () => {
     listaMeses,
     listaTipo,
     deletarLancamento,
+    salvarLancamento
   }
 }

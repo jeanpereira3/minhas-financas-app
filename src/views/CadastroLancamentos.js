@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { useLancamentoService } from '../hooks/useLancamentoService'
+import { useToast } from '../hooks/useToastr'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
 import SelectMenu from '../components/SelectMenu'
+import LocalStorage from '../ultils/LocalStorage'
 
 const CadastroLancamentos = () => {
   const [descricao, setDescricao] = useState('')
@@ -12,8 +16,67 @@ const CadastroLancamentos = () => {
   const [mes, setMes] = useState('')
   const [valor, setValor] = useState('')
   const [tipo, setTipo] = useState('')
+  const usuario = LocalStorage.getItem('_usuario_logado')
 
-  const { listaTipo, listaMeses } = useLancamentoService()
+  const { listaTipo, listaMeses, salvarLancamento } = useLancamentoService()
+  const { mensagemSucesso, mensagemErro } = useToast()
+
+  const navigate = useNavigate()
+
+  const salvar = () => {
+    const msgs = validar()
+
+    if (msgs && msgs.length > 0) {
+      msgs.forEach(msg =>{
+        mensagemErro(msg)
+      })
+      return false
+    }
+
+    salvarLancamento({
+      descricao,
+      ano,
+      mes,
+      valor,
+      tipo,
+      usuario : usuario.id
+    }).then(response => {
+      mensagemSucesso('Lancamento cadastrado com sucesso.')
+      navigate('/consulta-lancamentos')
+    }).catch(erro =>{
+      mensagemErro(erro.response.value)
+    })
+  }
+
+  const validar = () => {
+    const msgs = []
+
+    if (!descricao) {
+      msgs.push('O campo Descriçâo é obrigatorio.')
+    }
+
+    if (!ano) {
+      msgs.push('O campo Ano é obrigatorio.')
+    } else if (ano.length !== 4) {
+      msgs.push('Informe um Ano válido.')
+    }
+
+    if (!mes) {
+      msgs.push('Informe um Mês válido.')
+    }
+
+    if (!valor) {
+      msgs.push('Informe um Valor.')
+    } else if (valor <= 0) {
+      msgs.push('Informe um Valor válido.')
+    }
+    
+    if (!tipo) {
+      msgs.push('Informe um Tipo.')
+    } 
+
+    return msgs
+  }
 
   return (
     <div className='container'>
@@ -86,7 +149,8 @@ const CadastroLancamentos = () => {
         <button
           type='button'
           className='btn btn-success'
-        >Buscar</button>
+          onClick={salvar}
+        >Salvar</button>
         <button type='button' className='btn btn-danger'>Cadastrar</button>
       </Card>
     </div>
