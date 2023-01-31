@@ -1,5 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+
+import { Link } from 'react-router-dom'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
@@ -133,7 +134,7 @@ const ConsultaLancamentos = () => {
           className='btn btn-success'
           onClick={buscar}
         >Buscar</button>
-        <button type='button' className='btn btn-danger'>Cadastrar</button>
+        <Link to={'/cadastrar-lancamentos'} type='button' className='btn btn-danger'>Cadastrar</Link>
 
         <LancamentosTable
           lancamentos={lancamentos}

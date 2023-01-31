@@ -13,6 +13,7 @@ import Login from './views/Login'
 import Home from './views/Home';
 import CadastroUsuario from './views/CadastroUsuario'
 import ConsultaLancamentos from './views/ConsultaLancamentos';
+import CadastroLancamentos from './views/CadastroLancamentos';
 
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"               
@@ -28,6 +29,7 @@ function App() {
           <Route path='/home' element={<Home />}></Route>
           <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
           <Route path='/consulta-lancamentos' element={<ConsultaLancamentos />}></Route>
+          <Route path='/cadastrar-lancamentos' element={<CadastroLancamentos />}></Route>
         </Routes>
       </BrowserRouter>  
     </div>
