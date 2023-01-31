@@ -6,6 +6,9 @@ import FormGroup from '../components/FormGroup'
 import SelectMenu from '../components/SelectMenu'
 import LancamentosTable from '../components/LancamentosTable'
 
+import { Dialog } from 'primereact/dialog'
+import { Button } from 'primereact/button'
+
 import { useLancamentoService } from '../hooks/useLancamentoService'
 import { useToast } from '../hooks/useToastr'
 import LocalStorage from '../ultils/LocalStorage'
@@ -16,6 +19,9 @@ const ConsultaLancamentos = () => {
   const [tipo, setTipo] = useState('')
   const [descricao, setDescricao] = useState('')
   const [lancamentos, setLancamentos] = useState([])
+  const [lancamentoADeletar, setLancamentoADeletar] = useState()
+
+  const [visible, setVisible] = useState(false);
 
   const { getLancamentos, listaMeses, listaTipo, deletarLancamento } = useLancamentoService()
   const { mensagemErro, mensagemSucesso } = useToast()
@@ -36,12 +42,12 @@ const ConsultaLancamentos = () => {
     })
   }
 
-  const deletar = (lancamento) => {
-    deletarLancamento(lancamento.id).then(response => {
+  const deletar = () => {
+    deletarLancamento(lancamentoADeletar.id).then(response => {
       setLancamentos((current) =>
         current.filter(
           (element) =>
-            element.id !== lancamento.id 
+            element.id !== lancamentoADeletar.id 
         )
       );
 
@@ -49,7 +55,22 @@ const ConsultaLancamentos = () => {
     }).catch(erro => {
       mensagemErro(erro.response.data)
     })
+
+    setVisible(false)
   }
+
+  const abrirConfirmacao = (lancamento) => {
+    setVisible(true)
+    setLancamentoADeletar(lancamento)
+  }
+
+  
+  const footerContent = (
+    <div>
+      <Button label="Não" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
+      <Button label="Sim" icon="pi pi-check" onClick={deletar} autoFocus />
+    </div>
+  );
 
   return (
     <div className='container'>
@@ -116,9 +137,17 @@ const ConsultaLancamentos = () => {
 
         <LancamentosTable
           lancamentos={lancamentos}
-          deletar={deletar}
+          abrirConfirmacao={abrirConfirmacao}
         />
       </Card>
+
+      <div className="card flex justify-content-center">
+        <Dialog header="Header" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)} footer={footerContent}>
+          <p className="m-0">
+            Confirma a exclusão deste Lancamento?
+          </p>
+        </Dialog>
+      </div>
     </div>
   )
 }

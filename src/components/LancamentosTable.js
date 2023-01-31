@@ -17,7 +17,7 @@ const LancamentosTable = (props) => {
           <button
             type='button'
             className='btn btn-danger'
-            onClick={e => props.deletar(lancamento)}
+            onClick={e => props.abrirConfirmacao(lancamento)}
           >Deletar</button>
         </td>
       </tr>
