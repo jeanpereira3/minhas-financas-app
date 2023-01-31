@@ -13,7 +13,11 @@ const LancamentosTable = (props) => {
         <td>{lancamento.mes}</td>
         <td>{lancamento.status}</td>
         <td>
-          <button type='button' className='btn btn-primary'>Editar</button>
+          <button
+            type='button'
+            className='btn btn-primary'
+            onClick={e => props.editar(lancamento)}
+          >Editar</button>
           <button
             type='button'
             className='btn btn-danger'

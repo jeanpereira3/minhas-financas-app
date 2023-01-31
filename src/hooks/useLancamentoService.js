@@ -26,6 +26,10 @@ export const useLancamentoService = () => {
     return httpClient.get(params)
   }
 
+  const getLancamentosPorId = (id) => {
+    return httpClient.get(`${LANCAMENTO_URL}/${id}`)
+  }
+
   const salvarLancamento = (data) => {
       return httpClient.post(`${LANCAMENTO_URL}`, data)
   }
@@ -65,6 +69,7 @@ export const useLancamentoService = () => {
     listaMeses,
     listaTipo,
     deletarLancamento,
-    salvarLancamento
+    salvarLancamento,
+    getLancamentosPorId
   }
 }

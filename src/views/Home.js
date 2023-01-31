@@ -39,12 +39,15 @@ const Home = () => {
         <p>E essa é sua área administrativa, utilize um dos menus ou botões abaixo para navegar pelo sistema.</p>
         <p className='lead'>
           <Link className='btn btn-primary btn-lg' 
-            to='/cadastrar-usuario' role='button'>
+            to='/cadastrar-usuario' type='button'>
             <i className='fa fa-users'></i>
             Cadastrar Usuário
           </Link>
-          <Link className='btn btn-danger btn-lg' href='https://bootswatch.com/flatly/#' role='button'>
-            <i className='fa fa-users'></i>
+          <Link 
+          to={'/cadastrar-lancamentos'}
+          className='btn btn-danger btn-lg'
+           type='button'
+           ><i className='fa fa-users'></i>
             Cadastrar Lançamento
           </Link>
         </p>

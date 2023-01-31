@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
@@ -23,6 +23,8 @@ const ConsultaLancamentos = () => {
   const [lancamentoADeletar, setLancamentoADeletar] = useState()
 
   const [visible, setVisible] = useState(false);
+
+  const navigate = useNavigate()
 
   const { getLancamentos, listaMeses, listaTipo, deletarLancamento } = useLancamentoService()
   const { mensagemErro, mensagemSucesso } = useToast()
@@ -63,6 +65,10 @@ const ConsultaLancamentos = () => {
   const abrirConfirmacao = (lancamento) => {
     setVisible(true)
     setLancamentoADeletar(lancamento)
+  }
+
+  const editar = (lancamento) => {
+    navigate(`/cadastrar-lancamentos/${lancamento.id}`)
   }
 
   
@@ -139,6 +145,7 @@ const ConsultaLancamentos = () => {
         <LancamentosTable
           lancamentos={lancamentos}
           abrirConfirmacao={abrirConfirmacao}
+          editar={editar}
         />
       </Card>
 

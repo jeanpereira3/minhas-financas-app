@@ -29,7 +29,7 @@ function App() {
           <Route path='/home' element={<Home />}></Route>
           <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
           <Route path='/consulta-lancamentos' element={<ConsultaLancamentos />}></Route>
-          <Route path='/cadastrar-lancamentos' element={<CadastroLancamentos />}></Route>
+          <Route path='/cadastrar-lancamentos/:id?' element={<CadastroLancamentos />}></Route>
         </Routes>
       </BrowserRouter>  
     </div>
