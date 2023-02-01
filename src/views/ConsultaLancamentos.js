@@ -26,8 +26,18 @@ const ConsultaLancamentos = () => {
 
   const navigate = useNavigate()
 
-  const { getLancamentos, listaMeses, listaTipo, deletarLancamento } = useLancamentoService()
-  const { mensagemErro, mensagemSucesso } = useToast()
+  const {
+    getLancamentos,
+    listaMeses,
+    listaTipo,
+    deletarLancamento,
+    atualizarStatusLancamento
+  } = useLancamentoService()
+  const { 
+    mensagemErro, 
+    mensagemSucesso, 
+    mensagemAlerta 
+  } = useToast()
 
   const buscar = () => {
     const usuarioLogado = LocalStorage.getItem('_usuario_logado')
@@ -39,6 +49,10 @@ const ConsultaLancamentos = () => {
       descricao,
       usuario: usuarioLogado.id
     }).then(response => {
+      if (response.data.length < 1) {
+        mensagemAlerta('Nenhum resultado encontrado.')
+      }
+
       setLancamentos(response.data)
     }).catch(erro => {
       mensagemErro(erro.response.data)
@@ -50,7 +64,7 @@ const ConsultaLancamentos = () => {
       setLancamentos((current) =>
         current.filter(
           (element) =>
-            element.id !== lancamentoADeletar.id 
+            element.id !== lancamentoADeletar.id
         )
       );
 
@@ -62,6 +76,23 @@ const ConsultaLancamentos = () => {
     setVisible(false)
   }
 
+  const alterarStatusLancamento = (lancamento, status) => {
+    atualizarStatusLancamento(lancamento, status)
+      .then(response => {
+        const novoLancamento = lancamentos.map(objeto =>{
+          if (objeto.id === lancamento.id ) {
+            return { ...objeto, status: status }
+          }
+          return objeto
+        })
+
+        setLancamentos(novoLancamento)
+        mensagemSucesso('Status do Lancamento alterado com sucesso.')
+      }).catch(erro => {
+        mensagemErro(erro.response.data)
+      })
+  }
+
   const abrirConfirmacao = (lancamento) => {
     setVisible(true)
     setLancamentoADeletar(lancamento)
@@ -71,7 +102,7 @@ const ConsultaLancamentos = () => {
     navigate(`/cadastrar-lancamentos/${lancamento.id}`)
   }
 
-  
+
   const footerContent = (
     <div>
       <Button label="Não" icon="pi pi-times" onClick={() => setVisible(false)} className="p-button-text" />
@@ -146,6 +177,7 @@ const ConsultaLancamentos = () => {
           lancamentos={lancamentos}
           abrirConfirmacao={abrirConfirmacao}
           editar={editar}
+          alterarStatusLancamento={alterarStatusLancamento}
         />
       </Card>
 

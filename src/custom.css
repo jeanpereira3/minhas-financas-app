@@ -65,6 +65,10 @@ pre {
     font-weight: 500
 }
 
+.btn {
+    margin-right: 5px;
+}
+
 .bs-docs-section .page-header h1 {
     padding: 2rem 0;
     font-size: 3rem

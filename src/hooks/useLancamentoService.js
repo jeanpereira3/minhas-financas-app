@@ -38,6 +38,10 @@ export const useLancamentoService = () => {
     return httpClient.put(`${LANCAMENTO_URL}/${lancamento.id}`, lancamento)
   }
 
+  const atualizarStatusLancamento = (lancamento, status) => {
+    return httpClient.put(`${LANCAMENTO_URL}/${lancamento.id}/atualiza-status`, {status})
+  }
+
   const deletarLancamento = (id) => {
     return httpClient.delete(`${LANCAMENTO_URL}/${id}`)
   }
@@ -75,6 +79,7 @@ export const useLancamentoService = () => {
     deletarLancamento,
     salvarLancamento,
     getLancamentosPorId,
-    atualizarLancamento
+    atualizarLancamento,
+    atualizarStatusLancamento
   }
 }
