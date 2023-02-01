@@ -12,7 +12,7 @@ import { Button } from 'primereact/button'
 
 import { useLancamentoService } from '../hooks/useLancamentoService'
 import { useToast } from '../hooks/useToastr'
-import LocalStorage from '../ultils/LocalStorage'
+import { useAuthValue } from '../context/AuthContext'
 
 const ConsultaLancamentos = () => {
   const [ano, setAno] = useState('')
@@ -25,6 +25,7 @@ const ConsultaLancamentos = () => {
   const [visible, setVisible] = useState(false);
 
   const navigate = useNavigate()
+  const { auth } = useAuthValue()
 
   const {
     getLancamentos,
@@ -40,14 +41,13 @@ const ConsultaLancamentos = () => {
   } = useToast()
 
   const buscar = () => {
-    const usuarioLogado = LocalStorage.getItem('_usuario_logado')
 
     getLancamentos({
       ano,
       mes,
       tipo,
       descricao,
-      usuario: usuarioLogado.id
+      usuario: auth.id
     }).then(response => {
       if (response.data.length < 1) {
         mensagemAlerta('Nenhum resultado encontrado.')

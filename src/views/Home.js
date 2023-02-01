@@ -4,19 +4,19 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useUsuarioService } from '../hooks/useUsuarioService'
+import { useAuthentication } from '../hooks/useAuthentication'
 
-import LocalStorage from '../ultils/LocalStorage'
 
 const Home = () => {
 
   const [saldo, setSaldo] = useState(0)
 
   const { getSaldo } = useUsuarioService()
+  const { auth } = useAuthentication()
 
   const exibirSaldo = () => {
-    const usuarioLogado = LocalStorage.getItem('_usuario_logado')
 
-    getSaldo(usuarioLogado.id)
+    getSaldo(auth.id)
       .then(response => {
         setSaldo(response.data)
       }).catch(erro => {

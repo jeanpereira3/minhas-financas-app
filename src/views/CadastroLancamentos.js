@@ -3,14 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 
 import { useLancamentoService } from '../hooks/useLancamentoService'
+import { useAuthValue } from '../context/AuthContext'
 import { useToast } from '../hooks/useToastr'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
 import SelectMenu from '../components/SelectMenu'
-import LocalStorage from '../ultils/LocalStorage'
 
 const CadastroLancamentos = () => {
+  const { auth } = useAuthValue()
 
   const [descricao, setDescricao] = useState('')
   const [ano, setAno] = useState('')
@@ -18,9 +19,11 @@ const CadastroLancamentos = () => {
   const [valor, setValor] = useState('')
   const [tipo, setTipo] = useState('')
   const [status, setStatus] = useState('')
-  const usuario = LocalStorage.getItem('_usuario_logado')
+  const usuario = auth
 
   const [opcao, setOpcao] = useState(false)
+
+
 
   const {
     listaTipo,

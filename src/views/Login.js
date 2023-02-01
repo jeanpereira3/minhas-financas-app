@@ -2,13 +2,14 @@ import React from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { useAuthentication } from '../hooks/useAuthentication'
 import { useUsuarioService } from '../hooks/useUsuarioService'
-import { useToast } from '../hooks/useToastr' 
+import { useToast } from '../hooks/useToastr'
+import { useAuthValue } from '../context/AuthContext'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
 
-import LocalStorage from '../ultils/LocalStorage'
 
 const Login = () => {
 
@@ -17,9 +18,14 @@ const Login = () => {
 
   const navigate = useNavigate()
 
+
   const { autenticar } = useUsuarioService()
+  const { createUser } = useAuthentication()
   const { mensagemErro } = useToast()
 
+  const { auth } = useAuthValue()
+
+  console.log(auth);
 
   const entrar = (e) => {
     e.preventDefault()
@@ -27,8 +33,11 @@ const Login = () => {
       email,
       senha
     }).then(response => {
-      LocalStorage.setItem('_usuario_logado', response.data)
-      navigate('/home')
+
+      createUser(response.data)
+
+
+      window.location.href ='/home'
     }).catch(erro => {
       mensagemErro(erro.response.data)
     })

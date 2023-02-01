@@ -8,4 +8,8 @@ export default class LocalStorage {
   static setItem(chave, valor){
     localStorage.setItem(chave, JSON.stringify(valor))
   }
+
+  static deleteItem(chave) {
+    localStorage.removeItem(chave)
+  }
 }

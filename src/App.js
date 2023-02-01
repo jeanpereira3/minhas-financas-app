@@ -1,6 +1,9 @@
 import React from 'react';
 
-import {BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import { useAuthentication } from './hooks/useAuthentication'
+import { AuthProvider } from './context/AuthContext';
 
 import 'bootswatch/dist/flatly/bootstrap.css'
 import './custom.css'
@@ -16,22 +19,35 @@ import ConsultaLancamentos from './views/ConsultaLancamentos';
 import CadastroLancamentos from './views/CadastroLancamentos';
 
 import "primereact/resources/themes/lara-light-indigo/theme.css"
-import "primereact/resources/primereact.min.css"               
+import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
 
 function App() {
+
+  const { auth } = useAuthentication()
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path='/' element={<Login />} ></Route>
-          <Route path='/home' element={<Home />}></Route>
-          <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
-          <Route path='/consulta-lancamentos' element={<ConsultaLancamentos />}></Route>
-          <Route path='/cadastrar-lancamentos/:id?' element={<CadastroLancamentos />}></Route>
-        </Routes>
-      </BrowserRouter>  
+      <AuthProvider value={{ auth }}>
+        <BrowserRouter>
+          {auth && <NavBar />}
+          <Routes>
+            <Route path='/' element={<Login />} ></Route>
+            <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
+            <Route
+              path='/home'
+              element={auth ? <Home /> : <Navigate to='/' />}
+            ></Route>
+            <Route
+              path='/consulta-lancamentos'
+              element={auth ? <ConsultaLancamentos /> : <Navigate to='/' />}
+            ></Route>
+            <Route
+              path='/cadastrar-lancamentos/:id?'
+              element={auth ? <CadastroLancamentos /> : <Navigate to='/' />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

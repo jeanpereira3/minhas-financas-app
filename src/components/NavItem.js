@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 export const NavItem = (props) => {
   return (
-    <li className='nav-item'>
+    <li onClick={e => props.logoutSistem()} className='nav-item'>
       <NavLink to={props.href} className='nav-link'>{props.label}</NavLink>
     </li>
   )
