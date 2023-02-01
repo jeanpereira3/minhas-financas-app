@@ -20,12 +20,14 @@ const CadastroLancamentos = () => {
   const [status, setStatus] = useState('')
   const usuario = LocalStorage.getItem('_usuario_logado')
 
+  const [opcao, setOpcao] = useState(false)
+
   const {
     listaTipo,
     listaMeses,
     salvarLancamento,
     getLancamentosPorId,
-    atualizarLancamento 
+    atualizarLancamento
   } = useLancamentoService()
   const { mensagemSucesso, mensagemErro } = useToast()
 
@@ -85,6 +87,7 @@ const CadastroLancamentos = () => {
           setValor(response.data.valor)
           setTipo(response.data.tipo)
           setStatus(response.data.status)
+          setOpcao(true)
         }).catch(error => {
           mensagemErro(error.response.value)
         })
@@ -124,7 +127,7 @@ const CadastroLancamentos = () => {
 
   return (
     <div className='container'>
-      <Card title='Cadastar lancamento'>
+      <Card title={opcao ? 'Atualizar lancamento' : 'Cadastar lancamento'}>
         <FormGroup
           label='Descrição: *'
           htmlFor='inputDescricao'
@@ -190,16 +193,21 @@ const CadastroLancamentos = () => {
           ></SelectMenu>
         </FormGroup>
 
-        <button
-          type='button'
-          className='btn btn-success'
-          onClick={salvar}
-        >Salvar</button>
-        <button
-          type='button'
-          className='btn btn-success'
-          onClick={atualizar}
-        >Atualizar</button>
+        {opcao ? (
+          <button
+            type='button'
+            className='btn btn-success'
+            onClick={atualizar}
+          >Atualizar</button>
+        ) : (
+          <button
+            type='button'
+            className='btn btn-success'
+            onClick={salvar}
+          >Salvar</button>
+        )}
+
+
         <Link
           to={'/consulta-lancamentos'}
           type='button'
