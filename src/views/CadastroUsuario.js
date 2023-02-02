@@ -37,7 +37,7 @@ const CadastroUsuario = () => {
             mensagemSucesso('Usuário cadastrado com sucesso! Faça o login para acessar o sistema.')
             navigate('/')
         }).catch(erro => {
-            mensagemErro(erro.response.data)
+            mensagemErro(erro.response.data) 
         })
 
 

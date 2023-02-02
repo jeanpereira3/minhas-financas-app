@@ -43,10 +43,6 @@ const LancamentosTable = (props) => {
   return (
     <div className='row'>
       <div className='col-lg-12'>
-        <div className='page-header'>
-          <h1 id='tables'></h1>
-        </div>
-
         <div className='bs-component'>
           <table className='table table-hover'>
             <thead>

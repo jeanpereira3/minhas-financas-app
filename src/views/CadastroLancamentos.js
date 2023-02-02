@@ -96,7 +96,7 @@ const CadastroLancamentos = () => {
         })
     }
 
-  }, [])
+  })
 
   const validar = () => {
     const msgs = []

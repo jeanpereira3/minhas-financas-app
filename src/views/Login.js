@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { useAuthentication } from '../hooks/useAuthentication'
 import { useUsuarioService } from '../hooks/useUsuarioService'
@@ -15,9 +15,6 @@ const Login = () => {
 
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
-
-  const navigate = useNavigate()
-
 
   const { autenticar } = useUsuarioService()
   const { createUser } = useAuthentication()
