@@ -34,7 +34,7 @@ const Login = () => {
       createUser(response.data)
 
 
-      window.location.href ='/home'
+      window.location.reload()
     }).catch(erro => {
       mensagemErro(erro.response.data)
     })
