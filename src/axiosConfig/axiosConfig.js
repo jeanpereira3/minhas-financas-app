@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const httpClient = axios.create({
-  baseURL: 'http://localhost:8080'
+  baseURL: 'minhas-financas-production-d5c5.up.railway.app'
 })
 
 export default httpClient
