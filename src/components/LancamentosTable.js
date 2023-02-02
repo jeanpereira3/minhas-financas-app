@@ -2,7 +2,7 @@ import React from 'react'
 
 const LancamentosTable = (props) => {
 
-  var currencyFormatter = require('currency-formatter')
+  var currencyFormatter = require('currency-formatter') 
 
   const rows = props.lancamentos.map((lancamento, index) => {
     return (

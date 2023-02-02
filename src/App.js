@@ -32,7 +32,7 @@ function App() {
         <BrowserRouter>
           {auth && <NavBar />}
           <Routes>
-            <Route path='/' element={<Login />} ></Route>
+            <Route path='/' element={auth ? <Navigate to='/home' /> :<Login />} ></Route>
             <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
             <Route
               path='/home'

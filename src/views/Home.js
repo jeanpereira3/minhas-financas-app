@@ -8,6 +8,7 @@ import { useAuthentication } from '../hooks/useAuthentication'
 
 
 const Home = () => {
+  var currencyFormatter = require('currency-formatter')
 
   const [saldo, setSaldo] = useState(0)
 
@@ -34,7 +35,7 @@ const Home = () => {
       <div className='jumbotron'>
         <h1 className='display-3'>Bem vindo!</h1>
         <p className='lead'>Esse é seu sistema de finanças.</p>
-        <p className='lead'>Seu saldo para o mês atual é de R$ {saldo}</p>
+        <p className='lead'>Seu saldo para o mês atual é de {currencyFormatter.format(saldo, { code: 'BRL' })}</p>
         <hr className='my-4' />
         <p>E essa é sua área administrativa, utilize um dos menus ou botões abaixo para navegar pelo sistema.</p>
         <p className='lead'>
