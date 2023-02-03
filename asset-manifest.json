@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/jeanpereira3/minhas-financas-app.git/static/css/main.667ffc8c.css",
-    "main.js": "/jeanpereira3/minhas-financas-app.git/static/js/main.3db3001d.js",
-    "static/js/787.93670db3.chunk.js": "/jeanpereira3/minhas-financas-app.git/static/js/787.93670db3.chunk.js",
-    "static/media/primeicons.svg": "/jeanpereira3/minhas-financas-app.git/static/media/primeicons.e1441b135b3ca9ad643c.svg",
-    "static/media/primeicons.eot": "/jeanpereira3/minhas-financas-app.git/static/media/primeicons.d44157bdfa026dc877af.eot",
-    "static/media/primeicons.woff": "/jeanpereira3/minhas-financas-app.git/static/media/primeicons.10d3152104f2208ac82a.woff",
-    "static/media/primeicons.ttf": "/jeanpereira3/minhas-financas-app.git/static/media/primeicons.ea5358601d0a3fd6670b.ttf",
-    "static/media/primeicons.woff2": "/jeanpereira3/minhas-financas-app.git/static/media/primeicons.78172950b335ccdb94e2.woff2",
-    "index.html": "/jeanpereira3/minhas-financas-app.git/index.html",
-    "main.667ffc8c.css.map": "/jeanpereira3/minhas-financas-app.git/static/css/main.667ffc8c.css.map",
-    "main.3db3001d.js.map": "/jeanpereira3/minhas-financas-app.git/static/js/main.3db3001d.js.map",
-    "787.93670db3.chunk.js.map": "/jeanpereira3/minhas-financas-app.git/static/js/787.93670db3.chunk.js.map"
+    "main.css": "./static/css/main.86e23643.css",
+    "main.js": "./static/js/main.54f9c162.js",
+    "static/js/787.93670db3.chunk.js": "./static/js/787.93670db3.chunk.js",
+    "static/media/primeicons.svg": "./static/media/primeicons.e1441b135b3ca9ad643c.svg",
+    "static/media/primeicons.eot": "./static/media/primeicons.d44157bdfa026dc877af.eot",
+    "static/media/primeicons.woff": "./static/media/primeicons.10d3152104f2208ac82a.woff",
+    "static/media/primeicons.ttf": "./static/media/primeicons.ea5358601d0a3fd6670b.ttf",
+    "static/media/primeicons.woff2": "./static/media/primeicons.78172950b335ccdb94e2.woff2",
+    "index.html": "./index.html",
+    "main.86e23643.css.map": "./static/css/main.86e23643.css.map",
+    "main.54f9c162.js.map": "./static/js/main.54f9c162.js.map",
+    "787.93670db3.chunk.js.map": "./static/js/787.93670db3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.667ffc8c.css",
-    "static/js/main.3db3001d.js"
+    "static/css/main.86e23643.css",
+    "static/js/main.54f9c162.js"
   ]
 }
