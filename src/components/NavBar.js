@@ -12,7 +12,7 @@ const NavBar = () => {
 
   const logoutSistem = () => {
     logout()
-    window.location.reload()
+    
   }
 
   return (
@@ -37,7 +37,10 @@ const NavBar = () => {
 
             <NavItem href='/consulta-lancamentos' label='Lançamentos'></NavItem>
 
-            <NavItem logoutSistem={logoutSistem} href='/' label='sair'></NavItem>
+            <li className='nav-item'>
+              <NavLink onClick={logoutSistem} className='nav-link' label='sair' to='/' >Sair</NavLink>
+            </li>
+            
           </ul>
         </div>
       </div>

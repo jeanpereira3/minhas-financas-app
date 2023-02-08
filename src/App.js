@@ -25,26 +25,30 @@ import "primeicons/primeicons.css"
 function App() {
 
   const { auth } = useAuthentication()
+  
+  const user = auth()
+
+  console.log(user);
 
   return (
     <div className="App">
-      <AuthProvider value={{ auth }}>
+      <AuthProvider value={{ user }}>
         <BrowserRouter>
-          {auth && <NavBar />}
+          {user && <NavBar />}
           <Routes>
-            <Route path='/' element={auth ? <Navigate to='/home' /> :<Login />} ></Route>
+            <Route path='/' element={user ? <Navigate to='/home' /> :<Login />} ></Route>
             <Route path='/cadastrar-usuario' element={<CadastroUsuario />} ></Route>
             <Route
               path='/home'
-              element={auth ? <Home /> : <Navigate to='/' />}
+              element={user ? <Home /> : <Navigate to='/' />}
             ></Route>
             <Route
               path='/consulta-lancamentos'
-              element={auth ? <ConsultaLancamentos /> : <Navigate to='/' />}
+              element={user ? <ConsultaLancamentos /> : <Navigate to='/' />}
             ></Route>
             <Route
               path='/cadastrar-lancamentos/:id?'
-              element={auth ? <CadastroLancamentos /> : <Navigate to='/' />}></Route>
+              element={user ? <CadastroLancamentos /> : <Navigate to='/' />}></Route>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { useAuthentication } from '../hooks/useAuthentication'
 import { useUsuarioService } from '../hooks/useUsuarioService'
 import { useToast } from '../hooks/useToastr'
-import { useAuthValue } from '../context/AuthContext'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
@@ -20,10 +19,6 @@ const Login = () => {
   const { createUser } = useAuthentication()
   const { mensagemErro } = useToast()
 
-  const { auth } = useAuthValue()
-
-  console.log(auth);
-
   const entrar = (e) => {
     e.preventDefault()
     autenticar({
@@ -32,8 +27,6 @@ const Login = () => {
     }).then(response => {
 
       createUser(response.data)
-
-
       window.location.reload()
     }).catch(erro => {
       mensagemErro(erro.response.data)

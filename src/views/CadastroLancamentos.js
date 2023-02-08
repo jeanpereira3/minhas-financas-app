@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 
 import { useLancamentoService } from '../hooks/useLancamentoService'
-import { useAuthValue } from '../context/AuthContext'
 import { useToast } from '../hooks/useToastr'
 
 import Card from '../components/Card'
 import FormGroup from '../components/FormGroup'
 import SelectMenu from '../components/SelectMenu'
+import { useAuthValue } from '../context/AuthContext'
 
 const CadastroLancamentos = () => {
-  const { auth } = useAuthValue()
+
 
   const [descricao, setDescricao] = useState('')
   const [ano, setAno] = useState('')
@@ -19,7 +19,9 @@ const CadastroLancamentos = () => {
   const [valor, setValor] = useState('')
   const [tipo, setTipo] = useState('')
   const [status, setStatus] = useState('')
-  const usuario = auth
+
+  const { user } = useAuthValue()
+  const usuario = user
 
   const [opcao, setOpcao] = useState(false)
 

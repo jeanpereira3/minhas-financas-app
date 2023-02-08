@@ -2,9 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
+import { useAuthValue } from '../context/AuthContext'
 
 import { useUsuarioService } from '../hooks/useUsuarioService'
-import { useAuthentication } from '../hooks/useAuthentication'
+
+
 
 
 const Home = () => {
@@ -13,11 +15,11 @@ const Home = () => {
   const [saldo, setSaldo] = useState(0)
 
   const { getSaldo } = useUsuarioService()
-  const { auth } = useAuthentication()
+  const { user } = useAuthValue()
 
   const exibirSaldo = () => {
 
-    getSaldo(auth.id)
+    getSaldo(user.id)
       .then(response => {
         setSaldo(response.data)
       }).catch(erro => {
@@ -25,7 +27,7 @@ const Home = () => {
       })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     exibirSaldo()
   })
 
@@ -39,16 +41,16 @@ const Home = () => {
         <hr className='my-4' />
         <p>E essa é sua área administrativa, utilize um dos menus ou botões abaixo para navegar pelo sistema.</p>
         <p className='lead'>
-          <Link className='btn btn-primary btn-lg' 
+          <Link className='btn btn-primary btn-lg'
             to='/cadastrar-usuario' type='button'>
             <i className='fa fa-users'></i>
             Cadastrar Usuário
           </Link>
-          <Link 
-          to={'/cadastrar-lancamentos'}
-          className='btn btn-danger btn-lg'
-           type='button'
-           ><i className='fa fa-users'></i>
+          <Link
+            to={'/cadastrar-lancamentos'}
+            className='btn btn-danger btn-lg'
+            type='button'
+          ><i className='fa fa-users'></i>
             Cadastrar Lançamento
           </Link>
         </p>

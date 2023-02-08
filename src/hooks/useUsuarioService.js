@@ -13,7 +13,7 @@ export const useUsuarioService = () => {
   }
 
   const cadastrarUsuario = (data) => {
-    return httpClient.post(`${USUARIO_URL}/`, data)
+    return httpClient.post(`${USUARIO_URL}`, data)
   }
 
   return {

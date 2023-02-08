@@ -22,10 +22,11 @@ const ConsultaLancamentos = () => {
   const [lancamentos, setLancamentos] = useState([])
   const [lancamentoADeletar, setLancamentoADeletar] = useState()
 
+  const { user } = useAuthValue()
+
   const [visible, setVisible] = useState(false);
 
   const navigate = useNavigate()
-  const { auth } = useAuthValue()
 
   const {
     getLancamentos,
@@ -34,10 +35,10 @@ const ConsultaLancamentos = () => {
     deletarLancamento,
     atualizarStatusLancamento
   } = useLancamentoService()
-  const { 
-    mensagemErro, 
-    mensagemSucesso, 
-    mensagemAlerta 
+  const {
+    mensagemErro,
+    mensagemSucesso,
+    mensagemAlerta
   } = useToast()
 
   const buscar = () => {
@@ -47,7 +48,7 @@ const ConsultaLancamentos = () => {
       mes,
       tipo,
       descricao,
-      usuario: auth.id
+      usuario: user.id
     }).then(response => {
       if (response.data.length < 1) {
         mensagemAlerta('Nenhum resultado encontrado.')
@@ -79,8 +80,8 @@ const ConsultaLancamentos = () => {
   const alterarStatusLancamento = (lancamento, status) => {
     atualizarStatusLancamento(lancamento, status)
       .then(response => {
-        const novoLancamento = lancamentos.map(objeto =>{
-          if (objeto.id === lancamento.id ) {
+        const novoLancamento = lancamentos.map(objeto => {
+          if (objeto.id === lancamento.id) {
             return { ...objeto, status: status }
           }
           return objeto
